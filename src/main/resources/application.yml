@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    username: ju
+    password: ju
+    url: jdbc:mysql://localhost:3306/evianda
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  sql:
+    init:
+      mode: always
