@@ -2,11 +2,12 @@ spring:
   datasource:
     username: ju
     password: ju
-    url: jdbc:mysql://localhost:3306/evianda
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
+    url: jdbc:mysql://localhost:3306/trabalho
   sql:
     init:
       mode: always
+jwt:
+  private:
+    key: classpath:app.key
+  public:
+    key: classpath:app.pub
