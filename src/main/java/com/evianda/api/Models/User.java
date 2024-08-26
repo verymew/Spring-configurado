@@ -15,7 +15,6 @@ import java.util.List;
 
 @Table("users")
 public class User implements UserDetails{
-
     @Id
     @Column("id")
     private Long id;
