@@ -3,6 +3,9 @@ spring:
     username: postgres
     password: ju
     url: jdbc:postgresql://localhost:5432/evianda
+  jpa:
+    hibernate:
+      ddl-auto: update
 
 jwt:
   private:

@@ -1,28 +1,24 @@
 package com.evianda.api.Models;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.Table;
+import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
-
-@Table("users")
+@Entity
+@Table(name = "users")
 public class User implements UserDetails{
     @Id
-    @Column("id")
-    private Long id;
-    @Column("username")
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+    @Column(name = "username")
     private String username;
-    @Column("password")
+    @Column(name = "password")
     private String password;
-    @Column("email")
+    @Column(name = "email")
     private String email;
 
     @Override
