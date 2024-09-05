@@ -22,6 +22,8 @@ public class User implements UserDetails{
     private String username;
     @Column("password")
     private String password;
+    @Column("email")
+    private String email;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -38,6 +40,11 @@ public class User implements UserDetails{
         return username;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+
     public void setUsername(String username) {
         this.username = username;
     }
@@ -46,4 +53,7 @@ public class User implements UserDetails{
         this.password = password;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

@@ -37,17 +37,11 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody UserDto user){
-        try {
             Authentication authenticationRequest = new UsernamePasswordAuthenticationToken(user.username(), user.password());
             Authentication authenticationResponse = authenticationManager.authenticate(authenticationRequest);
             String token = tokenService.generateToken(authenticationResponse);
             return ResponseEntity.ok(token);
-        } catch (UsernameNotFoundException | BadCredentialsException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuário ou senha inválidos");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno: " + e.getMessage());
-        }
-    }
+    };
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody UserDto user){
@@ -55,11 +49,12 @@ public class AuthController {
         String criptpass = passwordEncoder.encode(user.password());
         novo.setPassword(criptpass);
         novo.setUsername(user.username());
+        novo.setEmail(user.email());
         try {
-            Optional<User> userexists = userRepository.findByUsername(user.username());
+            /* Optional<User> userexists = userRepository.findByUsername(user.username());
             if(userexists.isPresent()){
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Já existe");
-            }
+            } */
             userRepository.save(novo);
             return ResponseEntity.ok(novo);
         } catch (Exception e){
